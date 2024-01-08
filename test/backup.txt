@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="dobbelstenen/dice.png">
+    <link rel="stylesheet" href="style.css">
+    <title>Yahtzee</title>
+</head>
+<body>
+    <div class="rollDicesBox">
+        <div class="dobbelstenen">
+            <img id = "dobbelsteen"src="dobbelstenen/dice1.png">
+            <img id = "dobbelsteen"src="dobbelstenen/dice1.png">
+            <img id = "dobbelsteen"src="dobbelstenen/dice1.png">
+            <img id = "dobbelsteen"src="dobbelstenen/dice1.png">
+            <img id = "dobbelsteen"src="dobbelstenen/dice1.png">
+        </div>
+        <button class ="rollBtn" onclick="roll()">roll</button>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
+
+let dobbelsteen = document.querySelectorAll("#dobbelsteen");
+function roll() {
+
+
+    dobbelsteen.forEach(dobbelsteen => {
+        var randomnmr = Math.floor(Math.random() * 6) + 1; // nmr tussen 1 en 6
+        dobbelsteen.src = `dobbelstenen/dice${randomnmr}.png`;
+    });
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.rollDicesBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.dobbelstenen {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 5px;
+}
+
+.rollBtn {
+    margin-top: 50px;
+    height: 50px;
+    width: 100px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid;
+}

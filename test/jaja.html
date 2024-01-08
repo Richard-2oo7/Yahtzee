@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport", initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .scoreblad{
+            display: inline-block;
+            position: relative;
+            top: 100px;
+            left: 100px;
+        }
+        .topsection{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .naambox{
+            margin-top: auto;
+            margin-bottom: 8px;
+        }
+        .naam{
+            display: inline-block;
+            width: 70%;
+            height: 10px;
+            border-bottom: 1px solid black;
+        }
+        .scoretablebox{
+            border: 1px solid black;
+            padding: 3px;
+        }
+        table{
+            width: 400px;
+            border-collapse: collapse;
+        }
+        th{
+            border: 1px solid black;
+            height: 25px;
+            align-items: center;
+        }
+
+        td{
+            height: 25px;
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        th .dobbelsteen{
+           float: right;
+           height: 25px;
+           margin-right: 25px;
+        }
+        th .pijl{
+            height: 20px;
+        }
+        .beschrijfing{
+            font-size: 10px;
+            width: 50%;
+            float: right;
+            text-align: center;
+            margin-right: 5%;
+        }
+
+        .puntenbeschrijving{
+            float: none;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .scorecell{
+            width: 60px;
+            height: 35px;
+        }
+        .scoreblad h1{
+            font-size: 50px;
+        }
+        .innertable{
+            width: 100%;
+        }
+        .innerdata{
+            height: 40px;
+            width: 33%;
+            border: none;
+        }
+        .innertable :nth-child(2){
+            border-right: 1px solid;
+            border-left: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <div class="scoreblad">
+        <div class="topsection">
+        <h1>Yahtzee</h1>
+        <div class="naambox">
+            Naam:
+            <span class="naam"></span>
+        </div>
+        </div>
+            <div class="scoretablebox">
+                <table class="uppersection">
+                    <tr>
+                        <th><h4>Bovenste sectie</h4></th>
+                        <th>Punten telling</th>
+                        <th>Game #1</th>
+                        <th>Game #2</th>
+                        <th>Game #3</th>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <th>Enen<img class="dobbelsteen" src="dobbelstenen/dice1.png"></th>
+                            <th>Tel alle enen</th>
+                            <td class="scorecell"></td>
+                            <td class="scorecell"></td>
+                            <td class="scorecell"></td>
+                        </tr>
+
+                        <tr>
+                            <th>Tweeën<img class="dobbelsteen" src="dobbelstenen/dice2.png"></th>
+                            <th>Tel alle tweeën</th>
+                            <td class="scorecell"></td>
+                            <td class="scorecell"></td>
+                            <td class="scorecell"></td>
+                        </tr>
+
+                        <tr>
+                            <th>Drieën<img class="dobbelsteen" src="dobbelstenen/dice3.png"></th>
+                            <th>Tel alle drieën</th>
+                            <td class="scorecell"></td>
+                            <td class="scorecell"></td>
+                            <td class="scorecell"></td>
+                        </tr>
+
+                        <tr>
+                            <th>Vieren<img class="dobbelsteen" src="dobbelstenen/dice4.png"></th>
+                            <th>Tel alle vieren</th>
+                            <td class="scorecell"></td>
+                            <td class="scorecell"></td>
+                            <td class="scorecell"></td>
+                        </tr>
+
+                        <tr>
+                            <th>Vijven<img class="dobbelsteen" src="dobbelstenen/dice5.png"></th>
+                            <th>Tel alle vijfen</th>
+                            <td class="scorecell"></td>
+                            <td class="scorecell"></td>
+                            <td class="scorecell"></td>
+                        </tr>
+
+                        <tr>
+                            <th>Zessen<img class="dobbelsteen" src="dobbelstenen/dice6.png"></th>
+                            <th>Tel alle zessen</th>
+                            <td class="scorecell"></td>
+                            <td class="scorecell"></td>
+                            <td class="scorecell"></td>
+                        </tr>
+                        <tr>
+                            <th>Totale score</th>
+                            <th><img class = "pijl"src="afbeeldingen/pijl.png"></th>
+                            <td class="scorecell"></td>
+                            <td class="scorecell"></td>
+                            <td class="scorecell"></td>
+                        </tr>
+                        <tr>
+                            <th>Bonus<p class="beschrijfing">Als score hoger is dan 63</p></th>
+                            <th>Score 35</th>
+                            <td class="scorecell"></td>
+                            <td class="scorecell"></td>
+                            <td class="scorecell"></td>
+                        </tr>
+                        <tr>
+                            <th>Totaal <p class="beschrijfing">Van bovenste sectie</p></th>
+                            <th><img class = "pijl" src="afbeeldingen/pijl.png"></th>
+                            <td class="scorecell"></td>
+                            <td class="scorecell"></td>
+                            <td class="scorecell"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h4>Onderste sectie</h4>
+                <table class="lowersection">
+                    <tr>
+                        <th>3 van 1 soort</th>
+                        <th>Tel alles op</th>
+                        <td class="scorecell"></td>
+                        <td class="scorecell"></td>
+                        <td class="scorecell"></td>
+                    </tr>
+                    <tr>
+                        <th>4 van 1 soort</th>
+                        <th>Tel alles op</th>
+                        <td class="scorecell"></td>
+                        <td class="scorecell"></td>
+                        <td class="scorecell"></td>
+                    </tr>     
+                    <tr>
+                        <th>Vol huis<p class="beschrijfing puntenbeschrijfing">3 + 2<br> Dezelfde</p></th>
+                        <th>Score 25</th>
+                        <td class="scorecell"></td>
+                        <td class="scorecell"></td>
+                        <td class="scorecell"></td>
+                    </tr>
+                    <tr>
+                        <th>Kleine straat<p class="beschrijfing puntenbeschrijving">4 Opeenvolgende nummers</p></th>
+                        <th>Score 30</th>
+                        <td class="scorecell"></td>
+                        <td class="scorecell"></td>
+                        <td class="scorecell"></td>
+                    </tr>
+                    <tr>
+                        <th>Gtote straat<p class="beschrijfing puntenbeschrijving">5 Opeenvolgende nummers</p></th>
+                        <th>Score 40</th>
+                        <td class="scorecell"></td>
+                        <td class="scorecell"></td>
+                        <td class="scorecell"></td>
+                    </tr>
+                    <tr>
+                        <th>Yahtzee</th>
+                        <th>Score 50</th>
+                        <td class="scorecell"></td>
+                        <td class="scorecell"></td>
+                        <td class="scorecell"></td>
+                    </tr>
+                    <tr>
+                        <th>Kans</th>
+                        <th>Tel alles op</th>
+                        <td class="scorecell"></td>
+                        <td class="scorecell"></td>
+                        <td class="scorecell"></td>
+                    </tr>
+                    <tr>
+                        <th rowspan="2">Yahtzee<br>Bonus</th>
+                        <th> &#10004; voor elke bonus</th>
+                        <td class="scorecell">
+                            <table class="innertable">
+                                <td class="innerdata"></td>
+                                <td class="innerdata"></td>
+                                <td class="innerdata"></td>
+                            </table>
+                        </td>
+                        <td class="scorecell">
+                            <table class="innertable">
+                                <td class="innerdata"></td>
+                                <td class="innerdata"></td>
+                                <td class="innerdata"></td>
+                            </table>
+                        </td>
+                        <td class="scorecell">
+                            <table class="innertable">
+                                <td class="innerdata"></td>
+                                <td class="innerdata"></td>
+                                <td class="innerdata"></td>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>score 100 <br>per &#10004;</th>
+                        <td class="scorecell"></td>
+                        <td class="scorecell"></td>
+                        <td class="scorecell"></td>
+                    </tr>
+                    
+                    <tr>
+                        <th>Totaal<p class="beschrijfing">Van bovenste sectie</p></th>
+                        <th><img class = "pijl" src="afbeeldingen/pijl.png"></th>
+                        <td class="scorecell"></td>
+                        <td class="scorecell"></td>
+                        <td class="scorecell"></td>
+                    </tr>
+                    <tr>
+                        <th>Totaal<p class="beschrijfing">Van Onderste sectie</p></th>
+                        <th><img class = "pijl" src="afbeeldingen/pijl.png"></th>
+                        <td class="scorecell"></td>
+                        <td class="scorecell"></td>
+                        <td class="scorecell"></td>
+                    </tr>
+                    
+                    <tr>
+                        <th>Alles totaal</th>
+                        <th><img class = "pijl" src="afbeeldingen/pijl.png"></th>
+                        <td class="scorecell"></td>
+                        <td class="scorecell"></td>
+                        <td class="scorecell"></td>
+                    </tr>
+                </table>
+            </div>
+    </div>
+</body>
+</html>

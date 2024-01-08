@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.rollDicesBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-width: min-content;
+
+}
+
+.boxforedice {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.dobbelstenen {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 5px;
+    max-height: 100px;
+    overflow: hidden; 
+}
+
+.rollBtn {
+    margin-top: 50px;
+    height: 50px;
+    width: 100px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid;
+    z-index: 999;
+}

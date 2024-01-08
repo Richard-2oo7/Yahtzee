@@ -1,0 +1,93 @@
+.scoreblad {
+    display: inline-block;
+    position: relative;
+    top: 100px;
+    left: 100px;
+}
+
+.topsection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.naambox {
+    margin-top: auto;
+    margin-bottom: 8px;
+}
+
+.naam {
+    display: inline-block;
+    width: 70%;
+    height: 10px;
+    border-bottom: 1px solid black;
+}
+
+.scoretablebox {
+    border: 1px solid black;
+    padding: 3px;
+}
+
+table {
+    width: 400px;
+    border-collapse: collapse;
+}
+
+th {
+    border: 1px solid black;
+    height: 25px;
+    align-items: center;
+}
+
+td {
+    height: 25px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+th .dobbelsteen {
+    float: right;
+    height: 25px;
+    margin-right: 25px;
+}
+
+th .pijl {
+    height: 20px;
+}
+
+.beschrijfing {
+    font-size: 10px;
+    width: 50%;
+    float: right;
+    text-align: center;
+    margin-right: 5%;
+}
+
+.puntenbeschrijving {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.scorecell {
+    width: 60px;
+    height: 35px;
+}
+
+.scoreblad h1 {
+    font-size: 50px;
+}
+
+.innertable {
+    width: 100%;
+}
+
+.innerdata {
+    height: 40px;
+    width: 33%;
+    border: none;
+}
+
+.innertable :nth-child(2) {
+    border-right: 1px solid;
+    border-left: 1px solid;
+}
