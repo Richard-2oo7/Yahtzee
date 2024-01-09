@@ -12,7 +12,6 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    max-width: min-content;
 
 }
 
@@ -22,11 +21,18 @@
 }
 
 .dobbelstenen {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(5, 1fr);
     column-gap: 5px;
-    max-height: 100px;
-    overflow: hidden; 
+    height: 104px;
+    width: 524px;
+    justify-content: center;
+    align-items: center;
+    overflow-Y: hidden;
+}
+
+.dobbelsteen {
+    user-select: none;
 }
 
 .rollBtn {
