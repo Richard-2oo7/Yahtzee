@@ -51,7 +51,6 @@ function roll() {
 
         rollanimation(randomnmr, index);
     });
-    console.log(dobbelsteenGetallen);
     aanHetRollen = true;
     setTimeout(() => aanHetRollen = false, 2000)
 }
