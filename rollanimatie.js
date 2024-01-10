@@ -1,4 +1,4 @@
-document.addEventListener("DOMcontentLoaded", function(){
+document.addEventListener("DOMcontentLoaded", function () {
     document.body.style.zoom = "75%"
 })
 
@@ -32,19 +32,19 @@ function generatedicesforroll() {
 
 
 function roll() {
-    
+
     if (aanHetRollen) {
         return;
     }
-    
-    boxfordice.forEach(box=> {  // reset dobbelstenen naar 0
+
+    boxfordice.forEach(box => {  // reset dobbelstenen naar 0
         resetDice(box)
     })
 
     boxfordice.forEach((box, index) => {
-        if(isHighlighted(box)){
-            
-        } else{
+        if (isHighlighted(box)) {
+
+        } else {
             var randomnmr = Math.floor(Math.random() * 6) + 1; // nmr tussen 1 en 6
             dobbelsteenGetallen[index] = randomnmr;
         }
@@ -57,20 +57,20 @@ function roll() {
 }
 
 
-function isHighlighted(box){
+function isHighlighted(box) {
     var childs = box.children;
-    for(let i = 0; i < childs.length; i++){
-        if(childs[i].classList.contains("highlighted")){
+    for (let i = 0; i < childs.length; i++) {
+        if (childs[i].classList.contains("highlighted")) {
             return true;
         }
     }
 }
 
 
-function resetDice(box){
-    if(isHighlighted(box)){
+function resetDice(box) {
+    if (isHighlighted(box)) {
 
-    }   else{
+    } else {
         box.style.transition = "none";
         box.style.transform = "translateY(0%)";
         void box.offsetWidth;
@@ -81,16 +81,16 @@ function resetDice(box){
 
 function rollanimation(rndNmr, index) {
     var gaps = 5 + rndNmr;
-    if(index > 4){
+    if (index > 4) {
         return;
     }
-    
-   var childs = boxfordice[index].children;
-   for(let i = 0; i < childs.length; i++){
-    if(childs[i].classList.contains("highlighted")){
-        return;
-       }
-   }
+
+    var childs = boxfordice[index].children;
+    for (let i = 0; i < childs.length; i++) {
+        if (childs[i].classList.contains("highlighted")) {
+            return;
+        }
+    }
 
     boxfordice[index].style.transform = `translateY(500px)`;
     boxfordice[index].style.transition = "transform 1s";
