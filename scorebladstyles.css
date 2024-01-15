@@ -41,6 +41,10 @@ td {
     border: 1px solid black;
     text-align: center;
 }
+.scorecell:hover, 
+.innerdata:hover{
+    background-color: lightgray;
+}
 
 th .dobbelsteen {
     float: right;
