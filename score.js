@@ -18,12 +18,11 @@ function viewScore() {
     const values = Object.values(counts);
     //------------------------------------------------------------
 
-
-
     //------------------------------------------------------------
     for(var i = 0; i < collumnDatacells.length; i++){
         if(i < 7){
         if(counts[i] == undefined){
+            collumnDatacells[i].innerHTML = "";
             continue;
         }
 
