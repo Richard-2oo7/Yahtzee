@@ -5,86 +5,95 @@ var collumnDatacells = [];
 var innerdatacells = [];
 var scoreArr = [];
 var game = 1;
+var index = 0;
 selectDatacells(); // selecteert de eerste row van game
     
 function viewScore() { 
     keepScore();
     const counts = {};
     //maakt een object en array met hoevaak iets voorkomt---------
-        for (let i = 0; i < dobbelsteenGetallen.length; i++) {
-        const die = dobbelsteenGetallen[i];
+    for (let i = 0; i < dobbelsteenGetallen.length; i++) {
+        const die = dobbelsteenGetallen[i] - 1;
         counts[die] = (counts[die] || 0) + 1;
     }
     const values = Object.values(counts);
     //------------------------------------------------------------
 
     //------------------------------------------------------------
+    
     for(var i = 0; i < collumnDatacells.length; i++){
-        if(i < 7){
-        if(counts[i] == undefined){
-            collumnDatacells[i].innerHTML = "";
-            continue;
-        }
+        if(i < 6){
+            console.log(i + " " + scoreArr[i] + " " + counts[i]);
+            if(counts[i] == undefined){
+                collumnDatacells[i].innerHTML = scoreArr[i];
+                if(scoreArr[i] == undefined){
+                   collumnDatacells[i].innerHTML = "0";
+                }
+                continue;
+            }
 
-        if(scoreArr[i -1] === undefined){
-            collumnDatacells[i].innerHTML = "";
-            collumnDatacells[i -1].innerHTML = counts[i] * i;
+            if(scoreArr[i] == undefined){
+                collumnDatacells[i].innerHTML = "";
+                collumnDatacells[i].innerHTML = counts[i] * i;
+            } else{
+                collumnDatacells[i].innerHTML = scoreArr[i];
+            }
+    } 
+} 
+    //---------------------------------------------------------------
+    if(scoreArr[9] == undefined){
+        if(isThreeOfAKind(values)){
+            collumnDatacells[9].innerHTML = countAllDices(dobbelsteenGetallen);
         } else{
-            collumnDatacells[i -1].innerHTML = scoreArr[i - 1];
+            collumnDatacells[9].innerHTML = "";
         }
-    } else{
-        if(scoreArr[i -1] === undefined){
-            collumnDatacells[i -1].innerHTML = "";
+    }
+    if(scoreArr[10] == undefined){
+        if(isFourOfAKind(values)){
+            collumnDatacells[10].innerHTML = countAllDices(dobbelsteenGetallen);
         } else{
-        collumnDatacells[i -1].innerHTML = scoreArr[i - 1];
+            collumnDatacells[10].innerHTML = "";
         }
     }
-} if(scoreArr[9] == undefined){
-    if(isThreeOfAKind(values)){
-        collumnDatacells[9].innerHTML = countAllDices(dobbelsteenGetallen);
-    } else{
-        collumnDatacells[9].innerHTML = "";
+    if(scoreArr[11] == undefined){
+        if(isFullHouse(values)){
+            collumnDatacells[11].innerHTML = 25;
+        } else{
+            collumnDatacells[11].innerHTML = "";
+        }
     }
-}
-if(scoreArr[10] == undefined){
-    if(isFourOfAKind(values)){
-        collumnDatacells[10].innerHTML = countAllDices(dobbelsteenGetallen);
-    } else{
-        collumnDatacells[10].innerHTML = "";
+    if(scoreArr[12] == undefined){
+        if(isSmallStaight(dobbelsteenGetallen)){
+            collumnDatacells[12].innerHTML = 30;
+        } else{
+            collumnDatacells[12].innerHTML = "";
+        }
     }
-}
-if(scoreArr[11] == undefined){
-    if(isFullHouse(values)){
-        collumnDatacells[11].innerHTML = 25;
-    } else{
-        collumnDatacells[11].innerHTML = "";
+    if(scoreArr[13] == undefined){
+        if(isLargeStraight(dobbelsteenGetallen)){
+            collumnDatacells[13].innerHTML = 40;
+        } else{
+            collumnDatacells[13].innerHTML = "";
+        }
     }
-}
-if(scoreArr[12] == undefined){
-    if(isSmallStaight(dobbelsteenGetallen)){
-        collumnDatacells[12].innerHTML = 30;
-    } else{
-        collumnDatacells[12].innerHTML = "";
+    if(scoreArr[14] == undefined){
+        if(isYahtzee(values)){
+            collumnDatacells[14].innerHTML = 50;
+        } else{
+            collumnDatacells[14].innerHTML = "";
+        }
     }
-}
-if(scoreArr[13] == undefined){
-    if(isLargeStraight(dobbelsteenGetallen)){
-        collumnDatacells[13].innerHTML = 40;
-    } else{
-        collumnDatacells[13].innerHTML = "";
+    // is kans
+    if(scoreArr[15] == undefined){
+            collumnDatacells[15].innerHTML = countAllDices(dobbelsteenGetallen);
     }
-}
-if(scoreArr[14] == undefined){
-    if(isYahtzee(values)){
-        collumnDatacells[14].innerHTML = 50;
-    } else{
-        collumnDatacells[14].innerHTML = "";
+    if(scoreArr[14] != undefined && index < 4){
+        innerdatacells[index].innerHTML = "&#10004";
+        collumnDatacells[16].innerHTML = 100 * index + 100;
+        scoreArr[16] = 100 * index + 100;
+        index++;
     }
-}
-// is kans
-if(scoreArr[15] == undefined){
-        collumnDatacells[15].innerHTML = countAllDices(dobbelsteenGetallen);
-    }
+    //-------------------------------------------------------------------
 }
   
 
@@ -142,7 +151,7 @@ function isSmallStaight(values) {
     ){
         return true;
     }
-    return false;
+        return false;
 }
 
 function isLargeStraight(values) {

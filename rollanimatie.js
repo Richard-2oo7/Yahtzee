@@ -33,9 +33,9 @@ function generatedicesforroll() {
 
 function roll() {
 
-    if (aanHetRollen) {
-        return;
-    }
+   // if (aanHetRollen) {
+   //     return;
+   // }
 
     boxfordice.forEach(box => {  // reset dobbelstenen naar 0
         resetDice(box)
@@ -51,8 +51,8 @@ function roll() {
 
         rollanimation(randomnmr, index);
     });
-    aanHetRollen = true;
-    setTimeout(() => aanHetRollen = false, 2000)
+    //aanHetRollen = true;
+   // setTimeout(() => aanHetRollen = false, 2000)
 }
 
 
