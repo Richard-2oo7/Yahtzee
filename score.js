@@ -6,6 +6,7 @@ var innerdatacells = [];
 var scoreArr = [];
 var game = 1;
 var index = 0;
+var scoreTabelsArray = [];
 selectDatacells(); // selecteert de eerste row van game
     
 function viewScore() { 
@@ -13,7 +14,7 @@ function viewScore() {
     const counts = {};
     //maakt een object en array met hoevaak iets voorkomt---------
     for (let i = 0; i < dobbelsteenGetallen.length; i++) {
-        const die = dobbelsteenGetallen[i] - 1;
+        const die = dobbelsteenGetallen[i] -1;
         counts[die] = (counts[die] || 0) + 1;
     }
     const values = Object.values(counts);
@@ -23,7 +24,7 @@ function viewScore() {
     
     for(var i = 0; i < collumnDatacells.length; i++){
         if(i < 6){
-            console.log(i + " " + scoreArr[i] + " " + counts[i]);
+           // console.log(i + " " + scoreArr[i] + " " + counts[i]);
             if(counts[i] == undefined){
                 collumnDatacells[i].innerHTML = scoreArr[i];
                 if(scoreArr[i] == undefined){
@@ -34,12 +35,13 @@ function viewScore() {
 
             if(scoreArr[i] == undefined){
                 collumnDatacells[i].innerHTML = "";
-                collumnDatacells[i].innerHTML = counts[i] * i;
+                collumnDatacells[i].innerHTML = counts[i] * (i +1);
             } else{
                 collumnDatacells[i].innerHTML = scoreArr[i];
             }
     } 
 } 
+
     //---------------------------------------------------------------
     if(scoreArr[9] == undefined){
         if(isThreeOfAKind(values)){
@@ -87,7 +89,7 @@ function viewScore() {
     if(scoreArr[15] == undefined){
             collumnDatacells[15].innerHTML = countAllDices(dobbelsteenGetallen);
     }
-    if(scoreArr[14] != undefined && index < 4){
+    if(scoreArr[14] != undefined && index < 4 && values.length == 1){
         innerdatacells[index].innerHTML = "&#10004";
         collumnDatacells[16].innerHTML = 100 * index + 100;
         scoreArr[16] = 100 * index + 100;
@@ -176,65 +178,49 @@ function isFourOfAKind(values){
     return values.includes(4) || values.includes(5) || values.includes(6);
 }
 
-function keepScore(){
-    /*
-    var cijfer;
-    var scoreArr = [];
-    collumnDatacells.forEach(cell => {
-     //   cell.innerHTML = "";
-            cell.addEventListener("click", function(){
-                cijfer = cell.innerHTML;
-
-                if(cell.innerHTML == ""){ // hierdoor kan je niet op een lege cell klikken
-                    return;
-                }
-
-                for(var i = 0; i < collumnDatacells.length; i++){
-                    if(collumnDatacells[i] === cell){                scoreArr[i] = cell.innerHTML;
-                        console.log(scoreArr);
-                        continue;
-                    }
-
-                   if(scoreArr[i] == cell.innerHTML){
-                    cell.innerHTML = scoreArr[i];
-                    continue;
-                   } 
-                   
-                   collumnDatacells[i].innerHTML = "";
-                }
-            })
-    });
-
-/*
-    var scoreArr = [];
-    collumnDatacells.forEach(cell => {
-            cell.addEventListener("click", function(){
-                if(cell.innerHTML == ""){ 
-                    return;
-                } 
-                firstClick = true;
-                for(var i = 0; i < collumnDatacells.length; i++){
-
-                    if(collumnDatacells[i] === cell){                scoreArr[i] = cell.innerHTML;
-                    }
-                }
-                
-                
-            })
-
-            for(var i = 0; i < collumnDatacells.length; i++){
-                collumnDatacells[i].innerHTML = scoreArr[i];
-            
+function countTotalScores(){
+    //total score
+    var score = 0;
+    for(var i = 0; i < 6; i++){
+        if(scoreArr[i] != undefined){
+        score += Number(scoreArr[i]);
         }
-    });
-    */
-   
+    }
+    collumnDatacells[6].innerHTML = score;
+    scoreArr[6] = score;
+    if(score > 1){
+        collumnDatacells[7].innerHTML = 35;
+        scoreArr[7] = 35;
+    }
+    
+    if (Array.from(scoreArr.slice(0, 6)).includes(undefined)) {
+       // var scoreboven = scoreArr[6] + scoreArr[7];
+        console.log("hi");
+        collumnDatacells[8].innerHTML = scoreboven;
+         collumnDatacells[17].innerHTML = scoreboven;
+    }
+    if (!Array.from(scoreArr.slice(9, 16)).includes(undefined)) {    
+        var scoreonder = (scoreArr[6]) + (scoreArr[7]);
+        collumnDatacells[17].innerHTML = scoreonder; 
+    }
+}
+
+function keepScore(){
     collumnDatacells.forEach(cell => {
             cell.addEventListener("click", function(){
+                if(collumnDatacells[6] == cell ||
+                    collumnDatacells[8] == cell ||
+                    collumnDatacells[17] == cell||
+                    collumnDatacells[18] == cell ||
+                    collumnDatacells[19] == cell){
+                    return;
+                }
+
                 for(var i = 0; i < collumnDatacells.length; i++){
     	            if(collumnDatacells[i] == cell &&
                         scoreArr[i] != undefined ||
-                        cell.innerHTML == ""){
+                        cell.innerHTML == ""
+                        ){
                         return;
                     }
                 }
@@ -248,6 +234,7 @@ function keepScore(){
                         collumnDatacells[i].innerHTML = "";
                     }
                 }
+                countTotalScores()
             })
     });
 }

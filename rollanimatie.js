@@ -1,8 +1,3 @@
-document.addEventListener("DOMcontentLoaded", function () {
-    document.body.style.zoom = "75%"
-})
-
-
 let boxfordice = document.querySelectorAll(".boxforedice");
 let aanHetRollen = false;
 var dobbelsteenGetallen = [];

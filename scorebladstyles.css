@@ -1,3 +1,13 @@
+.player1{
+    position: absolute;
+    left: 20px;
+}
+.player2{
+    position: absolute;
+    right: 20px;
+}
+
+
 .scoreblad {
     display: inline-block;
     position: relative;
