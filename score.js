@@ -1,5 +1,6 @@
 const dataCell = document.querySelectorAll(".scorecell");
 const innerdataCell = document.querySelectorAll(".innerdata");
+console.log(dataCell);
 
 var collumnDatacells = [];
 var innerdatacells = [];
@@ -11,7 +12,8 @@ selectDatacells();
 
 function viewScore() {
     keepScore();
-
+    console.log(scoreArr);
+    
 
     const counts = {};
     for (let i = 0; i < dobbelsteenGetallen.length; i++) {
@@ -165,31 +167,34 @@ function countTotalScores() {
             score += Number(scoreArr[i]);
         }
     }
+    if(score != 0){
     collumnDatacells[6].innerHTML = score;
     scoreArr[6] = score;
-
+    }
     // Bonus 63 of hoger
-    if (score > 1) {
+    if (score > 63) {
         collumnDatacells[7].innerHTML = 35;
         scoreArr[7] = 35;
     }
 
     if (!Array.from(scoreArr.slice(0, 6)).includes(undefined)) {
-        var scoreboven = scoreArr[6] + scoreArr[7];
+        var scoreboven = Number(scoreArr[6])
+        if(scoreArr[7] != undefined){
+            scoreboven += Number(scoreArr[7]);
+        }
         collumnDatacells[8].innerHTML = scoreboven;
         collumnDatacells[17].innerHTML = scoreboven;
-    }
+    } 
     if (!Array.from(scoreArr.slice(9, 15)).includes(undefined)) {
         var scoreonder = 0;
         for (var i = 9; i < 17; i++) {
-            if (scoreArr[i] == undefined) {
-                scoreArr[i] = 0;
-            }
+            if(scoreArr[i] != undefined){
             scoreonder += Number(scoreArr[i]);
+            }
         }
-        //   collumnDatacells[18].innerHTML = scoreonder;
+        collumnDatacells[18].innerHTML = scoreonder;
     }
-    if (!Array.from(scoreArr.slice(17, 18)).includes(undefined)) {
+    if (collumnDatacells[17].innerHTML != "" && collumnDatacells[18] != "") {
         collumnDatacells[19].innerHTML = Number(collumnDatacells[17].innerHTML) + Number(collumnDatacells[18].innerHTML);
     }
 
@@ -219,11 +224,11 @@ function keepScore() {
                     scoreArr[i] = cell.innerHTML;
                     collumnDatacells[i].style.fontWeight = "bold";
                 }
-                if (scoreArr[i] === undefined) {
+                if (scoreArr[i] == undefined) {
                     collumnDatacells[i].innerHTML = "";
                 }
             }
-            countTotalScores()
+            countTotalScores();
         })
     });
 }
