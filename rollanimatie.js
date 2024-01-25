@@ -3,8 +3,8 @@ let aanHetRollen = false;
 var dobbelsteenGetallen = [];
 generatedicesforroll();
 var dobbelstenen = document.querySelectorAll(".dobbelsteen");
-
-
+let dotsSpan = document.querySelector(".dots");
+var counter = 0;
 function generatedicesforroll() {
     let iteratie = 13;
     let dicecount = 2;
@@ -27,10 +27,13 @@ function generatedicesforroll() {
 
 
 function roll() {
-
    // if (aanHetRollen) {
    //     return;
    // }
+    filldots();
+    if(counter > 3){
+        return;
+    }
 
     boxfordice.forEach(box => {  // reset dobbelstenen naar 0
         resetDice(box)
@@ -46,8 +49,8 @@ function roll() {
 
         rollanimation(randomnmr, index);
     });
-    //aanHetRollen = true;
-   // setTimeout(() => aanHetRollen = false, 2000)
+  //  aanHetRollen = true;
+  //  setTimeout(() => aanHetRollen = false, 2000)
 }
 
 
@@ -99,12 +102,32 @@ dobbelstenen.forEach(box => {
 
 function behouddobbelsteen(box) {
     dobbelstenen = document.querySelectorAll(".dobbelsteen");
-    dobbelstenen.forEach(box => { })
+    if(counter === 0){
+        return;
+    }
+    
     if (box.style.outline == "") {
         box.style.outline = "2px solid red";
         box.classList.add("highlighted");
     } else {
         box.style.outline = "";
         box.classList.remove("highlighted");
+    }
+}
+
+function filldots(){
+    counter++
+    dots = dotsSpan.innerHTML;
+    console.log(dots);
+    switch(counter){
+        case 1:
+            dotsSpan.innerHTML = "&#x25CF; &#x25CB; &#x25CB;";
+            break;
+        case 2:
+            dotsSpan.innerHTML = "&#x25CF; &#x25CF; &#x25CB;";
+            break;
+        case 3:
+            dotsSpan.innerHTML = "&#x25CF; &#x25CF; &#x25CF;";
+            break;
     }
 }

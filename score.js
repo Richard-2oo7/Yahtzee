@@ -1,20 +1,20 @@
 const dataCell = document.querySelectorAll(".scorecell");
 const innerdataCell = document.querySelectorAll(".innerdata");
-console.log(dataCell);
 
+var rowDataCells = [[],[]];
+var scoreArraysPlayers = [[],[]]
 var collumnDatacells = [];
 var innerdatacells = [];
 var scoreArr = [];
 var game = 1;
 var index = 0;
 var scoreTabelsArray = [];
+var player = 1;
 selectDatacells();
 
 function viewScore() {
-    keepScore();
-    console.log(scoreArr);
-    
 
+    keepScore();
     const counts = {};
     for (let i = 0; i < dobbelsteenGetallen.length; i++) {
         const die = dobbelsteenGetallen[i] - 1;
@@ -98,13 +98,27 @@ function viewScore() {
 }
 
 function selectDatacells() {
-    collumnDatacells = [];
+    
     innerdatacells = [];
+    scoreArraysPlayers[player] = scoreArr;
+    scoreArr = [];
+    player == 0 ? player++ : player--;
+    scoreArr = scoreArraysPlayers[player];
+
     for (var i = game - 1; i < dataCell.length; i += 3) {
-        collumnDatacells.push(dataCell[i]);
+        if(rowDataCells[0].length >= 20){
+            if (rowDataCells[1].length >= 20) {
+                continue;
+            }
+            rowDataCells[1].push(dataCell[i])
+            continue;
+        }
+        rowDataCells[0].push(dataCell[i]);
     }
 
-    for (var i = (game * 3) - 3; i < innerdataCell.length; i++) {
+    collumnDatacells = rowDataCells[player]
+
+    for (var i = (game * 3) - 3 + player * 9; i < innerdataCell.length; i++) {
         if (innerdatacells.length >= 3) {
             continue;
         }
@@ -163,7 +177,7 @@ function countTotalScores() {
     //total score
     var score = 0;
     for (var i = 0; i < 6; i++) {
-        if (scoreArr[i] != undefined) {
+        if (scoreArr[i] != undefined || scoreArr[i] == 0 ){
             score += Number(scoreArr[i]);
         }
     }
@@ -185,51 +199,90 @@ function countTotalScores() {
         collumnDatacells[8].innerHTML = scoreboven;
         collumnDatacells[17].innerHTML = scoreboven;
     } 
-    if (!Array.from(scoreArr.slice(9, 15)).includes(undefined)) {
+    
+    if (!Array.from(scoreArr.slice(9, 16)).includes(undefined)) {
         var scoreonder = 0;
         for (var i = 9; i < 17; i++) {
             if(scoreArr[i] != undefined){
             scoreonder += Number(scoreArr[i]);
             }
         }
-        collumnDatacells[18].innerHTML = scoreonder;
+        if(scoreonder != 0){
+          collumnDatacells[18].innerHTML = scoreonder;
+        }
     }
-    if (collumnDatacells[17].innerHTML != "" && collumnDatacells[18] != "") {
+    
+    if (collumnDatacells[17].innerHTML != "" && collumnDatacells[18].innerHTML != "") {
         collumnDatacells[19].innerHTML = Number(collumnDatacells[17].innerHTML) + Number(collumnDatacells[18].innerHTML);
+        
     }
-
 }
 
 function keepScore() {
+    toNextRound();
     collumnDatacells.forEach(cell => {
-        cell.addEventListener("click", function () {
-            if (collumnDatacells[6] == cell ||
-                collumnDatacells[8] == cell ||
-                collumnDatacells[17] == cell ||
-                collumnDatacells[18] == cell ||
-                collumnDatacells[19] == cell) {
+        cell.onclick =  function () {
+            if(!Array.from(rowDataCells.slice(1,2).includes(cell))){
+                return;
+            }
+            if (rowDataCells[0][6] == cell ||
+                rowDataCells[1][6] == cell ||
+                rowDataCells[0][8] == cell ||
+                rowDataCells[1][8] == cell ||
+                rowDataCells[0][17] == cell ||
+                rowDataCells[1][17] == cell ||
+                rowDataCells[0][18] == cell ||
+                rowDataCells[1][18] == cell ||
+                rowDataCells[0][19] == cell ||
+                rowDataCells[1][19] == cell) {
                 return;
             }
             for (var i = 0; i < collumnDatacells.length; i++) {
-                if (collumnDatacells[i] == cell &&
+                 if (collumnDatacells[i] === cell &&
                     scoreArr[i] != undefined ||
                     cell.innerHTML == ""
                 ) {
                     return;
                 }
             }
+            if(!collumnDatacells.includes(cell)){
+                return;
+            }
+                counter = 0;
+                dotsSpan.innerHTML = " &#x25CB; &#x25CB; &#x25CB;"
+                dobbelstenen.forEach(dobbelsteen => {
+                    dobbelsteen.classList.remove("highlighted");
+                    dobbelsteen.style.removeProperty("outline");
+                });
+            
 
             for (var i = 0; i < collumnDatacells.length; i++) {
                 if (collumnDatacells[i] == cell) {
                     scoreArr[i] = cell.innerHTML;
                     collumnDatacells[i].style.fontWeight = "bold";
+                    collumnDatacells[i].style.fontSize = "18px";
                 }
                 if (scoreArr[i] == undefined) {
                     collumnDatacells[i].innerHTML = "";
                 }
             }
+            
             countTotalScores();
-        })
+            selectDatacells();
+        }
     });
 }
 
+function toNextRound(){
+    if(rowDataCells[0][19].innerHTML != "" && rowDataCells[1][19].innerHTML != ""){
+
+        game++
+        rowDataCells = [[],[]]
+        scoreArr = []
+        scoreArraysPlayers = [[],[]]
+        collumnDatacells = []
+        player = 1;
+        selectDatacells();
+        
+    }
+}
